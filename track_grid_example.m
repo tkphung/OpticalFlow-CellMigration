@@ -77,3 +77,51 @@ end
 figure(roiF)
 hold on
 plot(xx',yy','-')
+
+%% Create Movie
+% Reload original video
+vidReader = VideoReader([folder file]);
+
+% Create two gif filenames
+% One with the tracking dots overlaid
+namedot  = [file(1:end-4) '_dots.gif'];
+% One with the paths overlaid
+namepath = [file(1:end-4) '_paths.gif'];
+
+
+h = figure('visible','off');
+set(gcf, 'InvertHardcopy', 'off')
+frame = 1;
+while hasFrame(vidReader)
+    disp(['Saving Frame ' num2str(frame)])
+    
+    frameGray = rgb2gray(readFrame(vidReader));
+
+    imshow(frameGray)
+    hold on
+    pp = plot(xx(:,frame),yy(:,frame),'y.','MarkerSize',10);
+    axis tight
+    drawnow 
+    imdot = frame2im(getframe(h));
+    [iminddot,cmdot] = rgb2ind(imdot,256);
+    
+    if frame>1
+    plot(xx(:,1:frame)',yy(:,1:frame)','-','Linewidth',1,'color',[1 1 0 0.6]);
+    end
+    axis tight
+    drawnow 
+    impath = frame2im(getframe(h));
+    [imindpath,cmpath] = rgb2ind(impath,256);
+    
+    hold off
+    
+    if frame == 1
+        imwrite(iminddot,cmdot,namedot,'gif', 'Loopcount',inf);
+        imwrite(imindpath,cmpath,namepath,'gif', 'Loopcount',inf);
+    else
+        imwrite(iminddot,cmdot,namedot,'gif','WriteMode','append');
+        imwrite(imindpath,cmpath,namepath,'gif','WriteMode','append');
+    end
+      
+    frame = frame+1;
+end
