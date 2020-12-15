@@ -54,6 +54,9 @@ opticFlow = opticalFlowFarneback;
 dt = 1; % frame
 
 %% Calculate flow
+% Read in Video again (reset vidReader)
+vidReader = VideoReader([folder file]);
+
 % Cycle through each frame in the movie
 frame = 1;
 while hasFrame(vidReader)
