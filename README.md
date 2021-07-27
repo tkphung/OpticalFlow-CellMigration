@@ -1,4 +1,4 @@
-# track-cells-matlab
+# Optical Flow for Cell Migration
 Use MATLAB's Computer Vision Toolbox to estimate trajectories of cells in a movie.
 
 # track_grid_example.m
