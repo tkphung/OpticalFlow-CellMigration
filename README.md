@@ -26,7 +26,7 @@ Use MATLAB's Computer Vision Toolbox to estimate trajectories of cells in a movi
 
 Sample movies for cell migration analysis. **These are available for download** [here (test_movies)](https://hu-my.sharepoint.com/:f:/g/personal/tkphung_hsph_harvard_edu/EtZUEu1AAXdFi8CY4HSH3rAB0Toxgmj-XfkMxEz41dDS3Q?e=zuzta3).
 
-* Humnan bronchial airway epithelial cells grown in Air-Liquid Interface culture
+* Human bronchial airway epithelial cells grown in Air-Liquid Interface culture
 * Cells are imaged using time-lapse, phase-contrast microscopy (6 min between frames)
 
 ### `batch_analysis_example.m`: batch process movies
