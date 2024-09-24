@@ -25,10 +25,16 @@ roiF = figure;
 imshow(frameGray)
 
 % Segment region of interest (a rectangle)
-prect  = drawrectangle('LineWidth',7,'Color','cyan');
-xrect  = [prect.Position(1)  prect.Position(1)+prect.Position(3)];
-yrect  = [prect.Position(2)  prect.Position(2)+prect.Position(4)];
-
+prect = drawrectangle('LineWidth',7,'Color','cyan');
+xrect = [prect.Position(1) ...
+         prect.Position(1) ...
+         prect.Position(1)+prect.Position(3) ...
+         prect.Position(1)+prect.Position(3)];
+yrect = [prect.Position(2) ...
+         prect.Position(2)+prect.Position(4) ...
+         prect.Position(2)+prect.Position(4) ...
+         prect.Position(2)];
+ 
 % Generate initial grid points
 spaceout  = 20; % Spacing of grid (pixels)
 [r,c]     = size(frameGray);
