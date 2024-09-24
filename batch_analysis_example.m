@@ -24,8 +24,8 @@ for jz = 1:numel(allimgs)
     
     % Pixel Resolution
     OMEdata = data{1, 4};
-    voxelSizeX = OMEdata.getPixelsPhysicalSizeX(0).value(ome.units.UNITS.MICROMETER); % in µm
-    voxelSizeY = OMEdata.getPixelsPhysicalSizeY(0).value(ome.units.UNITS.MICROMETER); % in µm
+    voxelSizeX = OMEdata.getPixelsPhysicalSizeX(0).value(ome.units.UNITS.MICROMETER); % in Âµm
+    voxelSizeY = OMEdata.getPixelsPhysicalSizeY(0).value(ome.units.UNITS.MICROMETER); % in Âµm
     pixres = [voxelSizeX.doubleValue() voxelSizeY.doubleValue()]; %(um/pixel)
     
     % Make a video from image sequence
@@ -47,6 +47,16 @@ for jz = 1:numel(allimgs)
     border    = round(50/pixres(1)); % 50 um -> pixels
     brectx    = [border c-border];
     brecty    = [border r-border];
+    prect = drawrectangle('LineWidth',7,'Color','cyan');
+    brectx = [border ...
+              border ...
+              c-border ...
+              c-border];
+    brecty = [border ...
+              border ...
+              r-border ...
+              r-border];
+         
     inborder  = inpolygon(xo,yo,brectx,brecty);
     xx        = xo(inborder);
     yy        = yo(inborder);
